@@ -1,0 +1,23 @@
+function sum (a,b){
+ if (a > b) {
+  alert ( true)
+ }
+ else alert (false)
+}
+}
+abc(2,3);
+//----------------------------
+
+function str (s){
+	
+	alert ('вы ввели ' + ' ' + s);
+}
+srt ('строка');
+
+//----------------------------
+
+function (f) {
+   var f = {
+    checked : true }
+   }
+}
