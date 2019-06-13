@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,400,700');
+
+*{                                /*  выравнивание общее  */
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html{                              /*  спец размер и шрифты под сообщения и др.  */
+	font-family: "Roboto", sans-serif;
+	font-weight: 100;
+	font-size: 1-px;
+}
+
+#wrapper{                          /*  выравнивание обертки списка учатников  */
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2rem;
+	background-color: #b5b5b7;
+	color: #ff;
+}
+
+.container{                         /*  основной контейнер чата  */
+	width: 60%;
+ 	height: 80%;
+	display: flex;
+	box-shadow: 1rem 2rem 4rem rgba(0,0,0,0.2);
+	min-width: 60rem;
+}
+
+.users,#chat-screen{
+	flex-grow: 1;
+	height: 100%;
+	min-width: 30rem;
+}
+
+.users{
+	background-color: #25 ;
+}
+
+#chat-screen{                         /*  распределение в 2 ряда  */
+	background: linear-gradient(rgba(242, 182, 50, 0.85), rgba(242, 182, 50, 0.85)), url("bg.jpeg") center no-repeat;
+	background-size: cover;
+}
+
+.users header{                         /*  заголовок над пользователями  */
+	background-color: blue;
+	padding: 2rem 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.users ul{
+	list-style-type: none;
+}
+
+.users ul li{
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.users ul li:nth-last-child{
+	border-bottom: none;
+}
+
+.users header h1{
+	font-size: 5rem;
+	font-weight: 100;
+}
+
+.awatar img{                         /*  уменьшение размера аватарок  */
+	width: 7.5rem;
+	height: 7.6rem;
+	border-radius: 50%;             /*  в кружок  */
+}
