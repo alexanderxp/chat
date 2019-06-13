@@ -1,23 +1,22 @@
-function sum (a,b){
- if (a > b) {
-  alert ( true)
- }
- else alert (false)
+function test (a, b)
+{
+   if (a > b)
+      return true;
+   if (a < b)
+      return false;
+
 }
-}
-abc(2,3);
+
+test(2,3)
+
 //----------------------------
 
 function str (s){
 	
-	alert ('вы ввели ' + ' ' + s);
+	return ('Вы ввели :' + ' ' + s);
 }
 srt ('строка');
 
 //----------------------------
 
-function (f) {
-   var f = {
-    checked : true }
-   }
-}
+function func3(o) {o.checked = true}
