@@ -37,15 +37,6 @@ html{                              /*  спец размер и шрифты п�
 	min-width: 30rem;
 }
 
-.users{
-	background-color: #25 ;
-}
-
-#chat-screen{                         /*  распределение в 2 ряда  */
-	background: linear-gradient(rgba(242, 182, 50, 0.85), rgba(242, 182, 50, 0.85)), url("bg.jpeg") center no-repeat;
-	background-size: cover;
-}
-
 .users header{                         /*  заголовок над пользователями  */
 	background-color: blue;
 	padding: 2rem 0;
