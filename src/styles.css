@@ -153,17 +153,6 @@ html{                              /*  спец размер и шрифты п�
 	outline: none;
 }
 
-#chat-screen .msg-compose i{              /*  цвет кнопок "прикрепить" и "отправить" */
-	color: #c0c0c0;
-	cursor: pointer;
-}
-
-#messages{                              /*  выравнивание текста сообщений чата */
-	overflow: auto;
-	flex-grow: 2;
-	padding: 1rem;
-}
-
 #messages article{                         /*  выравнивание текста сообщений справа от аватарки */
 	display: flex;
 	justify-content: flex-start;
