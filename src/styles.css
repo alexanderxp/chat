@@ -183,15 +183,6 @@ html{                              /*  спец размер и шрифты п�
 	justify-content: space-between;
 }
 
-.msg .pointer {                             /*  выделяющие белые треугольники возле сообщений */
-	width: 0;
-	height: 0;
-	border-style: solid;
-	border-width: 0 1rem 1.5rem 0;
-	border-color: transparent #fff transparent transparent;
-	margin: auto 0;
-}
-
 .inner-msg{                                /*  и наконец сами прямоугольники с сообщениями */
 	background-color: #fff;
 	width: 100%;
