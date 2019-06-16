@@ -140,15 +140,6 @@ html{                              /*  спец размер и шрифты п�
 	justify-content: space-between;
 }
 
-#chat-screen .msg-compose textarea{        /*  убирание границ поля отправки сообщений  */
-	flex-grow: 2;
-	margin: 0 1rem;
-	resize: none;
-	border: none;
-	padding-top: 5px;
-	height: 2rem;
-}
-
 #chat-screen .msg-compose textarea: focus {
 	outline: none;
 }
@@ -196,5 +187,3 @@ html{                              /*  спец размер и шрифты п�
 	box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
 	text-align: right;
 }
-
-
