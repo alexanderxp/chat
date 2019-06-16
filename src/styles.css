@@ -170,14 +170,6 @@ html{                              /*  спец размер и шрифты п�
 	margin-bottom: 2rem;
 }
 
-#messages article .avatar{
-	margin-right: 1rem;
-}
-
-#messages .right .avatar{                 
-	margin-right: 0;
-}
-
 .msg{
 	display: flex;
 	justify-content: space-between;
