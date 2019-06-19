@@ -31,56 +31,9 @@ html{                              /*  спец размер и шрифты п�
 	min-width: 60rem;
 }
 
-.users,#chat-screen{
-	flex-grow: 1;
-	height: 100%;
-	min-width: 30rem;
-}
 
-.users header{                         /*  заголовок над пользователями  */
-	background-color: blue;
-	padding: 2rem 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
 
-.users ul{
-	list-style-type: none;
-}
 
-.users ul li{
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.users ul li:nth-last-child{
-	border-bottom: none;
-}
-
-.users header h1{
-	font-size: 5rem;
-	font-weight: 100;
-}
-
-.awatar img{                         /*  уменьшение размера аватарок  */
-	width: 7.5rem;
-	height: 7.6rem;
-	border-radius: 50%;             /*  аватарки в кружок  */
-}
-
-.users  .avatar{                     /*  выравнивание пользователей в табличку  */
-	display: flex;
-	margin: auto 0;
-	padding: 1rem;
-	position: relative;
-}
-
-.username{                           /*  увеличить имя пользователя в табличке  */
-	font-size: 3rem;
-}
 
 .online{                              /*  кружок online  */
 	background-color: #4ad99b;
