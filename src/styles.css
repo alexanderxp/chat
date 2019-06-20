@@ -90,35 +90,40 @@ body {
   color: yellow;
 }
 
-
-
-
-
-
-#chat-screen{
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	flex-grow: 2;
-	color: #333;
+/* --------------------------------------БЛОК ЧАТА------------------------------------------ */
+.chat {									      /* параметры чата */
+  width: 490px;                               /* ширина истории чата */
+  float: left;                                /* размещение панели истории чата */
+  background: #d3ffce;                        /*  Цвет фона истории  чата*/
+  border-top-right-radius: 10px;              /*  верхний правый сглаженный угол истории  чата*/
+  border-bottom-right-radius: 10px;           /*  нижний правый сглаженный угол истории  чата*/
+  color: #3d3839;                             /*  Цвет текста истории чата*/
 }
 
-#chat-screen .msg-compose{               /*  размещение, улучшение поля отправки сообщений  */
-	background-color: #fff;
-	padding: 1rem;
-	display: flex;
-	justify-content: space-between;
+.chat .chat-header {                           /* граница между хедером и историей чата*/
+  padding: 15px;
+  border-bottom: 2px solid white;
+  background: #6A6C75;                        /* добавил другой цвет фона хедера */
+  width: 490px;                                 /* ширина блока хедера чата */
 }
 
-#chat-screen .msg-compose textarea: focus {
-	outline: none;
+.chat .chat-header img {                        /* размещение картинки аватарки в хедере слева от текста */
+  float: left;
 }
 
-#messages article{                         /*  выравнивание текста сообщений справа от аватарки */
-	display: flex;
-	justify-content: flex-start;
-	margin-bottom: 2rem;
+.chat .chat-header .chat-with {                 /* характеристики текста в хедере истории чатов */
+  font-weight: bold;
+  font-size: 16px;
 }
+
+.chat .chat-header .chat-num-messages {         /*  цвет текста количества сообщений в хедере истории чатов   */
+  color: #40E0D0;
+}
+
+
+
+
+
 
 .msg{
 	display: flex;
