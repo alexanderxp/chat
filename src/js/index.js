@@ -2,9 +2,12 @@ import 'babel-polyfill';
 import _ from 'lodash';
 
 import './../sass/styles.scss';
+import 'font-awesome/scss/font-awesome.scss'
+
+
 
 const getHeader = () => {
-  const helloWebpack = _.join(['Hello', 'webpack!', 'I love Vanilla JavaScript!!'], ' ');
+  const helloWebpack = _.join(['Hello', 'webpack!'], ' ');
   console.log(helloWebpack);
   const element = document.createElement('h1');
 

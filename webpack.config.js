@@ -4,76 +4,68 @@ const argv = require('yargs').argv;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 const isDevelopment = argv.mode === 'development';
 const isProduction = !isDevelopment;
 const distPath = path.join(__dirname, '/public');
 
 const config = {
-  entry: {
-    main: './src/js/index.js'
-  },
+  entry: [
+    './src/js/index.js',
+    'font-awesome/scss/font-awesome.scss'
+  ],
   output: {
     filename: 'bundle.js',
     path: distPath
   },
   module: {
-    rules: [{
-      test: /\.html$/,
-      use: 'html-loader'
-    }, {
-      test: /\.js$/,
-      exclude: /node_modules/,
-      use: [{
-        loader: 'babel-loader'
-      }]
-    }, {
-      test: /\.scss$/,
-      exclude: /node_modules/,
-      use: [
-        isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-        'css-loader',
-        {
-          loader: 'postcss-loader',
+    rules: [
+      {
+        test: /\.html$/,
+        use: 'html-loader'
+      }, {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [{
+          loader: 'babel-loader'
+        }]
+      }, {
+        test: /images[\\\/].+\.(gif|png|jpe?g|svg)$/i,
+        use: [{
+          loader: 'file-loader',
           options: {
-            plugins: [
-              isProduction ? require('cssnano') : () => {},
-              require('autoprefixer')({
-                browsers: ['last 2 versions']
-              })
-            ]
+            name: 'images/[name][hash].[ext]'
+          }
+        }, {
+          loader: 'image-webpack-loader',
+          options: {
+            mozjpeg: {
+              progressive: true,
+              quality: 70
+            }
           }
         },
-        'sass-loader'
-      ]
-    }, {
-      test: /images[\\\/].+\.(gif|png|jpe?g|svg)$/i,
-      use: [{
-        loader: 'file-loader',
-        options: {
-          name: 'images/[name][hash].[ext]'
-        }
+        ],
       }, {
-        loader: 'image-webpack-loader',
-        options: {
-          mozjpeg: {
-            progressive: true,
-            quality: 70
-          }
-        }
+        test: /\.s[a|c]ss$/,
+        use: [{ loader: "style-loader" }, { loader: "css-loader" }, { loader: "sass-loader" }]
+      }, {
+        test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/i,
+        loader: 'url-loader',
+        options: { limit: 10000, mimetype: 'application/font-woff2' }
+      }, {
+        test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/i,
+        loader: 'url-loader',
+        options: { limit: 10000, mimetype: 'application/font-woff' }
+      }, {
+        test: /\.(ttf|png|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i,
+      loader: 'file-loader'
       },
-      ],
-    }, {
-      test: /fonts[\\\/].+\.(otf|eot|svg|ttf|woff|woff2)$/i,
-      use: {
-        loader: 'file-loader',
-        options: {
-          name: 'fonts/[name][hash].[ext]'
-        }
-      },
-    }]
+    ]
   },
   plugins: [
+    new LiveReloadPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
@@ -101,7 +93,7 @@ const config = {
   } : {},
   devServer: {
     contentBase: distPath,
-    port: 9000,
+    port: 8080,
     compress: true,
     open: true
   }
