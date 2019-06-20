@@ -198,3 +198,40 @@ body {
 .align-right {                                   /* размещение имен учатников по разные стороны друг от друга */
   text-align: right;
 }
+/* -------------------------------БЛОК textarea (right footer)----------------------------------- */
+.chat .chat-message {                             /* Отступы textarea */
+  padding: 30px;
+  background: #6A6C75;                           /* добавил другой цвет фона в котором textarea */
+  border-bottom-right-radius: 10px;              /* скорректировал нижний округлый угол */
+}
+
+.chat .chat-message textarea {                      /* характеристики textarea */
+  width: 100%;                                   /* ширина чата в процентах относительно уже заданной */
+  padding: 10px 20px;                            /* отступы текста от границ textarea */
+  margin-bottom: 10px;                           /* нижний отступ textarea от внешних границ */
+  border-radius: 5px;                            /* округлость углов textarea */
+  background: #53F3E3;                           /* фон */
+  color: DarkBlue;                               /* цвет шрифта */
+  font: 18px/22px "Lato", Arial, sans-serif;     /* параметры шрифта */
+  resize: none;                                  /* запрет ручного изменения размера поля textarea */
+}
+
+.chat .chat-message button {                        /* характеристики кнопки */
+  float: right;                                  /* кнопка справа */
+  color: #40e0d0;                                /* цвет самой кнопки отправить (не нажатой)  */   
+  font-size: 16px;                               /* размер шрифта кнопки */
+  text-transform: uppercase;                     /* большими буквами */
+  border: none;                                  /* нет границы */
+  cursor: pointer;                               /* курсор изменяется при наведении на кнопку */
+  font-weight: bold;                             /* жирный текст кнопки */
+  background: #6A6C75;                           /* цвет фона кнопки отправить  */              
+}
+
+.chat .chat-message button:hover {                  /*  Цвет букв меняется при навелении курсора на кнопку  */
+  color: #0000FF;                                   /*  Цвет букв меняется при навелении курсора на кнопку  */
+  -webkit-transform: scale(1.2);                    /*  увеличение при навелении курсора на кнопку  */
+}
+
+.chat .chat-message button:active {                 /*  Цвет букв меняется при нажатии на кнопку  */
+ color: #01a715;
+}
