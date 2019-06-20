@@ -120,45 +120,26 @@ body {
   color: #40E0D0;
 }
 
-
-
-
-
-
-.msg{
-	display: flex;
-	justify-content: space-between;
+/* -------------------------------ХЕДЕР ЧАТА (ПРАВЫЙ ХЕДЕР)------------------------------------------ */
+.chat .chat-header .chat-about {				  /* отступы текста в хедере истории чатов */
+  float: left;                                /* левее , ближе к аватарке */
+  padding-left: 20px;                         /* левое расстояние от аватарки до текста */
+  margin-top: 6px;                            /* отступ текста от верхнего края блока хедера */
 }
 
-.inner-msg{                                /*  и наконец сами прямоугольники с сообщениями */
-	background-color: #fff;
-	width: 100%;
-	padding: 1.5rem 1rem;
-	border-radius: 0 4px 4px 4px;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-	text-align: left;
-	margin: auto 0;
+.chat .chat-history {                          /* характеристики окна истории чатов */
+  padding: 30px 30px 20px;
+  border-bottom: 2px solid white;             /* нижняя граница между историей чатов и textarea */
+  overflow-y: scroll;                         /* добавление бегунка */
+  height: 512px;                              /*  высота истории чата   */ 
+   width: 490px;                              /* ширина блока истории чата */
 }
 
-.right{                                    /*  аватарки сообщений с разных сторон */
-	flex-direction: row-reverse;
-}
-
-.right .msg{                                /*  так немного криво , треугольники не на местах */
-	flex-direction: row-rewerse;
-}
-
-.right .msg .pointer {                        /*  теперь выравниваем треугольники */
-	width: 0;
-	height: 0;
-	border-style: solid;
-	border-width: 1.5rem 1rem 0 0;
-	border-color: #fff transparent transparent transparent;
-	margin: auto 0; 
-}
-
-.right .msg .inner-msg{
-	border-radius: 4px 0 4px 4px;
-	box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
-	text-align: right;
+.clearfix:after {                              /* характеристики основного блока пользователей  */
+  visibility: hidden;                          /* ничего */
+  display: block;                              /* отображать как блок */
+  font-size: 0;                                /* ничего */
+  content: " ";                                /* так виден фон блока пользователей */
+  clear: both;                                 /* так виден фон блока пользователей */
+  height: 0;                                   /* ничего */
 }
