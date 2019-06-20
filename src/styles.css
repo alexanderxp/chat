@@ -235,3 +235,66 @@ body {
 .chat .chat-message button:active {                 /*  Цвет букв меняется при нажатии на кнопку  */
  color: #01a715;
 }
+/* ------------------------ДАЛЕЕ СТИЛИЗАЦИЯ ИКОНОК FONT-AWESOME---------------------------------- : */
+
+.people-list .fa-comment-o {                          /* стили иконки сообщения */
+  position: relative;
+  right: -40px;                                    /* сдвиг иконки поиска влево */
+  font-size: 40px;
+  color: #40e0d0; 
+  margin-top: 8px ;
+}
+
+ .people-list .fa-cog {                          /* стили иконки настроек (settings) */
+  position: relative;
+  right: -100px;                                    /* сдвиг иконки поиска влево */
+  font-size: 40px;
+  color: #40e0d0; 
+  margin-top: 10px ;
+}
+
+.chat .chat-header .fa-star {                       /* стили иконки звезда */
+  float: right;
+  color: Aqua;
+  font-size: 20px;
+  margin-top: 12px;
+}
+
+.fa-star {									       /* стили иконки звезда */
+cursor: pointer;								   /* меняется курсор при наведении (тут срабатывает лишь отдельно) */
+}
+
+.chat .fa-star:active{
+  color: MediumBlue;
+}
+
+.chat .chat-message .fa-paperclip, .chat .chat-message .fa-file-image-o {     /* стили иконок прикрепления файлов */
+  font-size: 18px;
+  color: #53F3E3;                                  /* изменил цвет на облачный */
+  cursor: pointer;                                 /* меняется курсор при наведении */
+}
+
+.chat .chat-message .fa-paperclip:active{
+  color: MediumBlue;
+}
+
+.chat .chat-message .fa-file-image-o:active{
+  color: MediumBlue;
+}
+
+.online {									       /* цвет иконок online в списке учатников */
+  color: #86BB71;                                  /* зеленые */
+}
+
+.offline {								           /* цвет иконок offline в списке учатников */
+  color: #E38968;						  	       /* оранжевые */
+}
+
+.me {											   /* цвет иконок для личных сообщений */
+  color: #86BB71;							       /* зеленые */
+}
+
+.online, .offline, .me {							   /* выравнивание online offline иконок */
+  margin-right: 5px;
+  font-size: 8px;
+}
