@@ -386,3 +386,10 @@ input[type='radio']:checked + label{
   margin-left: 21px;
   color: yellow;
 }
+/* ------------------------ отображение общего количества пользователей онлайн ---------------------------------------- */
+.onlinemembers {
+	margin-top: 101px;
+	margin-left: 84px;
+	color: yellow;
+	margin-bottom: 5px;
+}
