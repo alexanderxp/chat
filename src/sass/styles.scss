@@ -241,9 +241,12 @@ body {
 /* -------------------------------БЛОК textarea (right footer)----------------------------------- */
 .chat .chat-message {
   /* Отступы textarea */
-  padding: 30px;
-  background: #6a6c75; /* добавил другой цвет фона в котором textarea */
-  border-bottom-right-radius: 10px; /* скорректировал нижний округлый угол */
+  padding-top: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 5px;
+  background: #6A6C75;                           /* добавил другой цвет фона в котором textarea */
+  border-bottom-right-radius: 10px;              /* скорректировал нижний округлый угол */
 }
 
 .chat .chat-message textarea {
