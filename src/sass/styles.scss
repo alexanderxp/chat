@@ -432,32 +432,27 @@ input[type="radio"]:checked + label {
   color: grey;
 }
 /* ------------------------ отображения информации о введенном сообщении ---------------------------------------- */
-.messageinfo { 
+.messageinfo {
   margin-left: 20px;
-  width: 280px;
 }
 
-.displaysympols { 
-  display: block;
-  float:right;
+.displaysympols {
+  margin-left: 15px;
   color: yellow;
 }
 
-.displayletters { 
-  display: block;
-  float:right;
+.displayletters {
+  margin-left: 50px;
   color: yellow;
 }
 
-.displayspaces { 
-  display: block;
-  float:right;
+.displayspaces {
+  margin-left: 11px;
   color: yellow;
 }
 
-.displaypunctuation { 
-  display: block;
-  float:right;
+.displaypunctuation {
+  margin-left: 21px;
   color: yellow;
 }
 /* ------------------------ отображение общего количества пользователей онлайн ---------------------------------------- */

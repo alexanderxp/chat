@@ -58,7 +58,7 @@ const config = {
         loader: 'url-loader',
         options: { limit: 10000, mimetype: 'application/font-woff' }
       }, {
-        test: /\.(ttf|png|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i,
+        test: /\.(ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i,
       loader: 'file-loader'
       },
     ]
