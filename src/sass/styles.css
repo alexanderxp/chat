@@ -372,25 +372,30 @@ input[type='radio']:checked + label{
 /* ------------------------ отображения информации о введенном сообщении ---------------------------------------- */
  .messageinfo { 
   margin-left: 20px;
+  width: 280px;
 }
 
 .displaysympols { 
-  margin-left: 15px;
+  display: block;
+  float:right;
   color: yellow;
 }
 
 .displayletters { 
-  margin-left: 50px;
+  display: block;
+  float:right;
   color: yellow;
 }
 
 .displayspaces { 
-  margin-left: 11px;
+  display: block;
+  float:right;
   color: yellow;
 }
 
 .displaypunctuation { 
-  margin-left: 21px;
+  display: block;
+  float:right;
   color: yellow;
 }
 /* ------------------------ отображение общего количества пользователей онлайн ---------------------------------------- */
