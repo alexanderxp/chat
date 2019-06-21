@@ -462,8 +462,13 @@ input[type="radio"]:checked + label {
 }
 /* ------------------------ отображение общего количества пользователей онлайн ---------------------------------------- */
 .onlinemembers {
-  margin-top: 101px;
-  margin-left: 84px;
-  color: yellow;
-  margin-bottom: 5px;
+	width: 400px;
+	height: 150px;
+	border-bottom: 2px solid white; 
+	padding-left: 84px;
+	padding-top: 110px;
+	margin-top: 0px;
+	margin-left: 0px;
+	color: yellow;
+	margin-bottom: 0px;
 }
