@@ -385,8 +385,7 @@ label.threebuttons {
   /* блок с кнопками переключения  */
   display: inline-flex;           /* БЛОКИ РАЗМЕЩЕНЫ В ЛИНИЮ разъезжается без этого стиля  */
   padding: 33px 69px 33px 69px;  /* размеры гвнешних границ иконок-кнопок  */
-  align-items: center;
-  padding: auto;
+  float: right;
   color: #40e0d0;                /* цвет иконок-кнопок  */
   font-size: 22px;               /* величина шрифта иконок-кнопок  */
   background: #6a6c75;           /* цвет фона иконок-кнопок  */
