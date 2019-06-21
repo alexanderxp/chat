@@ -414,21 +414,21 @@ input[type="radio"]:checked + label {
 }
 
 .countMe {
-  position: absolute;
-  height: 16px;
-  width: 26px;
-  top: 32px; /* отступ сверху до окружности */
-  left: 60px; /* отступ слева до окружности */
-  font-size: 15px; /* размер шрифта */
-  border: 4px solid #6a6c75; /* серый цвет границы */
-  border-radius: 55px; /* округлые углы */
-  padding-left: 1px; /* отступы от числа до границы окружноти */
-  padding-right: 1px;
-  padding-top: 1px;
-  padding-bottom: 18px;
+  position: absolute;       
+  height:15px;
+  width: 27px;
+  top: 38px;                      /* отступ сверху до окружности */
+  left: 59px;                     /* отступ слева до окружности */
+  font-size: 17px;                /* размер шрифта */
+  border: 4px solid #6A6C75;      /* серый цвет границы */
+  border-radius: 55px;            /* округлые углы */
+  padding-left:  1px;             /* отступы от числа до границы окружноти */
+  padding-right:  1px; 
+  padding-top:  1px; 
+  padding-bottom:  18px; 
   margin: 2px;
-  background-color: yellow; /* фон окружности */
-  font-family: "bowlby-one";
+  background-color: yellow;       /* фон окружности */
+  font-family:  'bowlby-one';
   color: grey;
 }
 /* ------------------------ отображения информации о введенном сообщении ---------------------------------------- */
