@@ -45,8 +45,7 @@ const config = {
               quality: 70
             }
           }
-        },
-        ],
+        },],
       }, {
         test: /\.s[a|c]ss$/,
         use: [{ loader: "style-loader" }, { loader: "css-loader" }, { loader: "sass-loader" }]
@@ -93,7 +92,7 @@ const config = {
   } : {},
   devServer: {
     contentBase: distPath,
-    port: 8080,
+    port: 9000,
     compress: true,
     open: true
   }
