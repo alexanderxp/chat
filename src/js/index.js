@@ -5,7 +5,7 @@ import './../sass/styles.scss';
 import 'font-awesome/scss/font-awesome.scss'
 
 
-
+/*
 const getHeader = () => {
   const helloWebpack = _.join(['Hello', 'webpack!'], ' ');
   console.log(helloWebpack);
@@ -25,3 +25,4 @@ const o = {
 };
 
 console.log(o?.foo?.bar?.baz ?? 'default');
+*/

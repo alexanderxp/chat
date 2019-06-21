@@ -8,6 +8,8 @@
     "prebuild": "rimraf public && npm install",
     "build": "webpack --mode production --colors --progress",
     "prestart": "rimraf public && npm install",
+    "dev": "webpack --mode development",
+    "watch": "webpack --mode development --watch",
     "start": "webpack-dev-server --mode development --hot --colors --progress"
   },
   "repository": {
