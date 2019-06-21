@@ -123,12 +123,15 @@ body {
   color: #3d3839; /*  Цвет текста истории чата*/
 }
 
-.chat .chat-header {
-  /* граница между хедером и историей чата*/
-  padding: 15px;
+.chat .chat-header { 
+/* граница между хедером и историей чата*/                          
+  padding-left: 15px;
+  padding-right: 20px;
+  padding-bottom: 0px;
   border-bottom: 2px solid white;
-  background: #6a6c75; /* добавил другой цвет фона хедера */
-  width: 490px; /* ширина блока хедера чата */
+  background: #6A6C75;                        /* добавил другой цвет фона хедера */
+  width: 490px;                                 /* ширина блока хедера чата */
+  height: 58px;
 }
 
 .chat .chat-header img {
