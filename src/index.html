@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="En-Eu">
-<head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-    <title>Webpack starter</title>
-    <script src="http://localhost:35729/livereload.js"></script>
-	<link rel="stylesheet" href="./sass/font-awesome.min.scss">
-	<link rel="stylesheet" href="./sass/styles.scss"> 
-</head>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <title>Webpack starter</title>
+        <script src="http://localhost:35729/livereload.js"></script>
+        <link rel="stylesheet" href="./sass/font-awesome.min.scss">
+        <link rel="stylesheet" href="./sass/styles.scss"> 
+    </head>
 <body>
+    <div class="to-display">Login</div>
 	<div class="container clearfix">
 		<div class="people-list" id="people-list">
 <!-- Левый хедер  -->			
@@ -42,91 +43,7 @@
 		   <div class = "onlinemembers" title="отображение общего количества пользователей онлайн">
 					<i class="fa fa-circle online"></i>online 6 участников
 		   </div>
-			<ul class="list" title="отображение списка участников">
-				<li class="clearfix">
-					<img src="images/01.png" alt="avatar">
-					<div class="about">
-					<div class="name">Россомаха</div>
-					<div class="status">
-						<i class="fa fa-circle online"></i> online 20 минут
-					</div>
-					</div>
-				</li>
-				<li class="clearfix">
-					<img src="images/02.png" alt="avatar">
-					<div class="about">
-					<div class="name">АLEX Александр</div>
-					<div class="status">
-						<i class="fa fa-circle offline"></i> offline 7 минут
-					</div>
-					</div>
-				</li>
-				<li class="clearfix">
-					<img src="images/03.png" alt="avatar">
-					<div class="about">
-					<div class="name">НЕО</div>
-					<div class="status">
-						<i class="fa fa-circle online"></i> online 40 минут
-					</div>
-					</div>
-				</li>
-				<li class="clearfix">
-					<img src="images/04.png" alt="avatar">
-					<div class="about">
-					<div class="name">Анстасия</div>
-					<div class="status">
-						<i class="fa fa-circle online"></i> online 3 часа
-					</div>
-					</div>
-				</li><li class="clearfix">
-					<img src="images/05.png" alt="avatar">
-					<div class="about">
-					<div class="name">Рыбка)</div>
-					<div class="status">
-						<i class="fa fa-circle online"></i> online 4 часа
-					</div>
-					</div>
-				</li><li class="clearfix">
-					<img src="images/06.png" alt="avatar">
-					<div class="about">
-					<div class="name">Wonder Woman</div>
-					<div class="status">
-						<i class="fa fa-circle offline"></i> offline 30 минут
-					</div>
-					</div>
-				</li><li class="clearfix">
-					<img src="images/07.png" alt="avatar">
-					<div class="about">
-					<div class="name">Arny</div>
-					<div class="status">
-						<i class="fa fa-circle offline"></i> offline 10 часов
-					</div>
-					</div>
-				</li><li class="clearfix">
-					<img src="images/08.png" alt="avatar">
-					<div class="about">
-					<div class="name" style = " color:orange">Бизнес Леди (отошла)</div>
-					<div class="status">
-						<i class="fa fa-circle online"></i> online 15 минут
-					</div>
-					</div>
-				</li><li class="clearfix">
-					<img src="images/09.png" alt="avatar">
-					<div class="about">
-					<div class="name">Крутой</div>
-					<div class="status">
-						<i class="fa fa-circle offline"></i> offline c 10 января
-					</div>
-					</div>
-				</li><li class="clearfix">
-					<img src="images/10.png" alt="avatar">
-					<div class="about">
-					<div class="name">Анжелика</div>
-					<div class="status">
-						<i class="fa fa-circle online"></i> online 30 секунд
-					</div>
-					</div>
-				</li>
+			<ul class="list" id="users-list" title="отображение списка участников">
 			</ul>
 			<div class = "messageinfo">
 				<p title = "элемент для отображения общего кол-ва введенных символов">Количество введенных символов: 
@@ -259,6 +176,21 @@
 				<i class="fa fa-file-image-o"></i>
 				<button title = "кнопка отправки сообщений">ОТПРАВИТЬ</button>
 		</div>
-	</div>
+    </div>
+</div>
+<!-- login form -->
+<div class="login-modal">
+        <h3 class="brand-name">Draggable Login window</h3>
+        <div class="input-field">
+            <input type="email" class="id" placeholder="E-mail address / ID" >
+        </div>
+        <div class="input-field">
+        <input type="password" class="password" placeholder="Password"></div>
+        
+        <button type="submit" class="btn btn-sky">Login</button>
+        
+        <div class="close-sign">X</div>
+</div>
+<!-- login form END-->
 </body>
 </html>
