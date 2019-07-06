@@ -116,6 +116,10 @@ void function () {
 
             requestLogin.send(JSON.stringify(userName));
         });
+
+        document.getElementById('message-to-send').addEventListener('keydown', function (e) {
+            document.querySelector('#people-list > div.messageinfo > p:nth-child(1) > output').innerText =  e.target.value.length;
+        });
     });
 
     window.onload = addListeners();
