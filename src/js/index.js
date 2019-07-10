@@ -2,7 +2,8 @@ import 'babel-polyfill';
 import _ from 'lodash';
 
 import './../sass/styles.scss';
-import 'font-awesome/scss/font-awesome.scss'
+//import 'font-awesome/sass/font-awesome.min.scss';
+//import { threadId } from 'worker_threads';
 
 
 /*
@@ -28,6 +29,7 @@ console.log(o?.foo?.bar?.baz ?? 'default');
 */
 void function () {
     var blurVal = 40;
+    var LOGIN = false;
 
     document.addEventListener( "DOMContentLoaded", function(){
 
@@ -79,6 +81,7 @@ void function () {
                 function (user, i) {
                     var divChatWithElement = document.getElementsByClassName('chat-with')[0];
                     divChatWithElement.innerText = user.chatroom_id;
+                    document.querySelector('body > div.container.clearfix > div.chat > div.chat-history > ul > li:nth-child(1) > div.message.my-message').innerText = user.message;
                 }
             )
             } else {
@@ -104,13 +107,15 @@ void function () {
             // Обработчик ответа в случае неудачного соеденения
                 //document.querySelector('body > div.container.clearfix').style.visibility = "visible";
                 var i = blurVal;
-                document.querySelector('body > div.login-modal').style.visibility = "hidden";
+                document.querySelector('body > div.login-modal').style.display = "none";
                 var blurEffectInterval = setInterval(function () {
                     if (!i) {
                         clearInterval(blurEffectInterval);
                     }
                     document.querySelector('body > div.container.clearfix').style.filter = 'blur('+i--+'px)';                    
                 }, 50);
+                document.querySelector('.to-display').innerText = 'Logout';
+                LOGIN = true;
             };
             requestLogin.setRequestHeader('Content-Type', 'application/json');
 
@@ -120,6 +125,8 @@ void function () {
         document.getElementById('message-to-send').addEventListener('keydown', function (e) {
             document.querySelector('#people-list > div.messageinfo > p:nth-child(1) > output').innerText =  e.target.value.length;
         });
+
+        document.querySelector('body > div.container.clearfix > div.chat > div.chat-history > ul > li:nth-child(1) > div.message.my-message').innerText = 'privet is cosmosa';
     });
 
     window.onload = addListeners();
@@ -156,5 +163,11 @@ void function () {
         document.querySelector('.login-modal').style.display =  'none';
     });
 
-    document.querySelector('.to-display').addEventListener('click', toggleDisplay);
+    document.querySelector('.to-display').addEventListener('click', function () {
+        if (LOGIN) {
+            this.innerText = 'Login';
+            document.querySelector('body > div.container.clearfix').style.filter = 'blur('+blurVal+'px)';
+            document.querySelector('div.login-modal').style.display = 'inline-block';
+        }
+    }); 
 }();
