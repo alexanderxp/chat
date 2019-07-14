@@ -33,7 +33,7 @@ void function () {
     document.addEventListener( "DOMContentLoaded", function(){
         ////////////////////////////////////// to delete!!! //////////////////////////////////////
         /********/ document.querySelector('body > div.login-modal').style.display = "none"; /****/ 
-        /****** */ blurVal = 0; /****************************************************************/
+        /********/ blurVal = 0; /****************************************************************/
         ////////////////////////////////////// to delete!!! //////////////////////////////////////
         document.querySelector('body > div.container.clearfix').style.filter = 'blur('+blurVal+'px)';
 
@@ -45,7 +45,6 @@ void function () {
             if (requestUsers.status >= 200 && requestUsers.status < 400) {
             // Обработчик успещного ответа
             var response = requestUsers.responseText;
-            var userList = Response;
             
             JSON.parse(response).forEach(
                 function (user, i) {
@@ -171,9 +170,27 @@ void function () {
                 '<span class="message-data-name">Вы</span> <i class="fa fa-circle me"></i>' +
             '</div>' +
             '<div class="message other-message float-right">' + document.getElementById('message-to-send').value + 
-            '</div>'
+            '</div>';
             document.getElementById('chat-container').appendChild(messageFragment);
             document.getElementById('message-to-send').value = '';
+            
+            var requestMessagePost = new XMLHttpRequest();
+            requestMessagePost.open('POST', 'https://studentschat.herokuapp.com/messages', true);
+
+
+            requestMessagePost.onload = function() {
+            // Обработчик ответа в случае удачного соеденения
+                console.log('Message post success!');
+            };
+
+            requestMessagePost.onerror = function() {
+            // Обработчик ответа в случае неудачного соеденения
+                //document.querySelector('body > div.container.clearfix').style.visibility = "visible";
+                console.log('Что-то пошло не так');
+            };
+            requestMessagePost.setRequestHeader('Content-Type', 'application/json');
+
+            requestMessagePost.send(JSON.stringify(document.getElementById('message-to-send').value));
         });
     });
 
