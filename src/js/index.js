@@ -81,7 +81,7 @@ void function () {
                             chatContainer.innerHTML += 
                             '<li>' +
                                 '<div class="message-data">' +
-                                    '<span class="message-data-name"><i class="fa fa-circle online"></i>' + this.firstChild.firstChild.innerText + '</span>' +
+                                    '<span class="message-data-name"><i class="fa fa-circle ' + this.firstChild.lastChild.firstChild.className.split(' ')[2] + '"></i>' + this.firstChild.firstChild.innerText + '</span>' +
                                     '<span class="message-data-time">' + datePicker(new Date(userMessage.datetime)) + '</span>' +
                                 '</div>' +
                                 '<div class="message my-message">' + userMessage.message + '</div>' +
@@ -152,10 +152,29 @@ void function () {
         });
 
         document.getElementById('message-to-send').addEventListener('keydown', function (e) {
-            document.querySelector('#people-list > div.messageinfo > p:nth-child(1) > output').innerText =  e.target.value.length;
+            var value = e.target.value;
+            if (value.length >= 500) alert('Нельзя вводить больше пятсот сообщений!!!');
+            document.querySelector('#people-list > div.messageinfo > p:nth-child(1) > output').innerText =  value.length;
+            document.querySelector('#people-list > div.messageinfo > p:nth-child(2) > output').innerText =  value.split(/^(?:[в-яёa-z\d]*[а-яёa-z]\d[в-яёa-z\d]*$|[в-яёa-z\d]*\d[в-яёa-z][в-яёa-z\d]*$)/i).length - 1;
+            document.querySelector('#people-list > div.messageinfo > p:nth-child(3) > output').innerText =  value.split(' ').length - 1;
+            document.querySelector('#people-list > div.messageinfo > p:nth-child(4) > output').innerText =  value.split(/[.,\/#!$%\^&\*;:{}=\-_`~()]/).length - 1;
         });
 
         document.querySelector('body > div.container.clearfix > div.chat > div.chat-history > ul > li:nth-child(1) > div.message.my-message').innerText = 'privet is cosmosa';
+
+        document.getElementById('send-message').addEventListener('click', function () {
+            var messageFragment = document.createElement('li');
+            messageFragment.className = 'clearfix';
+            messageFragment.innerHTML = 
+            '<div class="message-data align-right">' +
+                '<span class="message-data-time">' + datePicker(new Date) + '</span> &nbsp; &nbsp;' +
+                '<span class="message-data-name">Вы</span> <i class="fa fa-circle me"></i>' +
+            '</div>' +
+            '<div class="message other-message float-right">' + document.getElementById('message-to-send').value + 
+            '</div>'
+            document.getElementById('chat-container').appendChild(messageFragment);
+            document.getElementById('message-to-send').value = '';
+        });
     });
 
     function getMessagesByUserId(userId) {

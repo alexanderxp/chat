@@ -52,8 +52,8 @@
 				<p title = "элемент для отображения кол-ва введенных букв">Количество введенных букв: 
 					<output name="result" class = "displayletters" title = "элемент для отображения кол-ва введенных букв">0</output>
 				</p>
-				<p title = "элемент для отображения кол-ва невидимых символов ">Количество невидимых символов: 
-					<output name="result" class = "displayspaces" title = "элемент для отображения кол-ва невидимых символов ">0</output>
+				<p title = "элемент для отображения кол-ва пробелов ">Количество пробелов: 
+					<output name="result" class = "displayspaces" title = "элемент для отображения кол-ва пробелов ">0</output>
 				</p>
 				<p title = "элемент для отображения кол-ва введенных знаков препинания">Количество знаков препинания: &nbsp;
 					<output name="result" class = "displaypunctuation" title = "элемент для отображения кол-ва введенных знаков препинания">0</output>
@@ -123,10 +123,10 @@
 			<a href = ""><i class="fa fa-underline" aria-hidden="true" title = "элемент форматирования текста"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href = ""><i class="fa fa-link" aria-hidden="true" title = "элемент форматирования текста"></i></a><br>
 			<br>
-			<textarea name="message-to-send" id="message-to-send" placeholder="Ваше сообщение" rows="3" title = "поле для ввода текста"></textarea>
+			<textarea name="message-to-send" maxlength="500" id="message-to-send" placeholder="Ваше сообщение" rows="3" title = "поле для ввода текста"></textarea>
 				<i class="fa fa-paperclip" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;
 				<i class="fa fa-file-image-o"></i>
-				<button title = "кнопка отправки сообщений">ОТПРАВИТЬ</button>
+				<button title = "кнопка отправки сообщений" id="send-message">ОТПРАВИТЬ</button>
 		</div>
     </div>
 </div>
