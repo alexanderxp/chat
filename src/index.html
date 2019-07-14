@@ -52,8 +52,8 @@
 				<p title = "элемент для отображения кол-ва введенных букв">Количество введенных букв: 
 					<output name="result" class = "displayletters" title = "элемент для отображения кол-ва введенных букв">0</output>
 				</p>
-				<p title = "элемент для отображения кол-ва невидимых символов ">Количество невидимых символов: 
-					<output name="result" class = "displayspaces" title = "элемент для отображения кол-ва невидимых символов ">0</output>
+				<p title = "элемент для отображения кол-ва пробелов ">Количество пробелов: 
+					<output name="result" class = "displayspaces" title = "элемент для отображения кол-ва пробелов ">0</output>
 				</p>
 				<p title = "элемент для отображения кол-ва введенных знаков препинания">Количество знаков препинания: &nbsp;
 					<output name="result" class = "displaypunctuation" title = "элемент для отображения кол-ва введенных знаков препинания">0</output>
@@ -93,7 +93,7 @@
 <!-- ИСТОРИЯ СООБЩЕНИЙ-->				
 				
 			<div class="chat-history" title = "отображение сообщений пользователей ">
-				<ul>
+				<ul id="chat-container">
 					<li>
 						<div class="message-data">
 							<span class="message-data-name"><i class="fa fa-circle online"></i>Анастасия</span>
@@ -102,63 +102,15 @@
 						<div class="message my-message">Я так рада!
 						</div>
 					</li>
-					<li class="clearfix">
+<!-- 					<li class="clearfix">
 						<div class="message-data align-right">
 							<span class="message-data-time">09:11 Сегодня</span> &nbsp; &nbsp;
 							<span class="message-data-name">Вы</span> <i class="fa fa-circle me"></i>
 						</div>
 						<div class="message other-message float-right">Я тоже)
 						</div>
-					</li>
-					<li>
-						<div class="message-data">
-							<span class="message-data-name"><i class="fa fa-circle online"></i>Анастасия</span>
-							<span class="message-data-time">10:20 AM, Сегодня</span>
-						</div>
-						<div class="message my-message">Хочу в ресторан.
-						</div>
-					</li>
-					<li class="clearfix">
-						<div class="message-data align-right">
-							<span class="message-data-time">10:22 Сегодня</span> &nbsp; &nbsp;
-							<span class="message-data-name">Вы</span> <i class="fa fa-circle me"></i>
-						</div>
-						<div class="message other-message float-right">Уже забронировал на вечер
-						</div>
-					</li>
-					<li>
-						<div class="message-data">
-							<span class="message-data-name"><i class="fa fa-circle online"></i>Анастасия</span>
-							<span class="message-data-time">10:40 Сегодня</span>
-						</div>
-						<div class="message my-message">Когда ты успел?
-						</div>
-					</li>
-					<li class="clearfix">
-						<div class="message-data align-right">
-							<span class="message-data-time">10:44 Сегодня</span> &nbsp; &nbsp;
-							<span class="message-data-name">Вы</span> <i class="fa fa-circle me"></i>
-						</div>
-						<div class="message other-message float-right">Еще вчера перед сном ты бормотала что хочешь в ресторан)
-						</div>
-					</li>
-					<li>
-						<div class="message-data">
-							<span class="message-data-name"><i class="fa fa-circle online"></i>Анастасия</span>
-							<span class="message-data-time">11:11 Сегодня</span>
-						</div>
-						<div class="message my-message">Я поражена твоей успеваемостью)
-						</div>
-					</li>
-					<li>
-				    <li class="clearfix">
-						<div class="message-data align-right">
-							<span class="message-data-time">12:12 Сегодня</span> &nbsp; &nbsp;
-							<span class="message-data-name">Вы</span> <i class="fa fa-circle me"></i>
-						</div>
-						<div class="message other-message float-right">))
-						</div>
-					</li>
+					</li> -->
+
 				</ul>
 			</div>
 <!-- ТЕКСТОВОЕ ПОЛЕ ВВОДА СООБЩЕНИЙ -->			
@@ -171,10 +123,10 @@
 			<a href = ""><i class="fa fa-underline" aria-hidden="true" title = "элемент форматирования текста"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href = ""><i class="fa fa-link" aria-hidden="true" title = "элемент форматирования текста"></i></a><br>
 			<br>
-			<textarea name="message-to-send" id="message-to-send" placeholder="Ваше сообщение" rows="3" title = "поле для ввода текста"></textarea>
+			<textarea name="message-to-send" maxlength="500" id="message-to-send" placeholder="Ваше сообщение" rows="3" title = "поле для ввода текста"></textarea>
 				<i class="fa fa-paperclip" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;
 				<i class="fa fa-file-image-o"></i>
-				<button title = "кнопка отправки сообщений">ОТПРАВИТЬ</button>
+				<button title = "кнопка отправки сообщений" id="send-message">ОТПРАВИТЬ</button>
 		</div>
     </div>
 </div>

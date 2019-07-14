@@ -28,11 +28,13 @@ const o = {
 console.log(o?.foo?.bar?.baz ?? 'default');
 */
 void function () {
-    var blurVal = 40;
-    var LOGIN = false;
+    var blurVal = 40, LOGIN = false, currentUserChatId = 0, messages = [];
 
     document.addEventListener( "DOMContentLoaded", function(){
-
+        ////////////////////////////////////// to delete!!! //////////////////////////////////////
+        /********/ document.querySelector('body > div.login-modal').style.display = "none"; /****/ 
+        /********/ blurVal = 0; /****************************************************************/
+        ////////////////////////////////////// to delete!!! //////////////////////////////////////
         document.querySelector('body > div.container.clearfix').style.filter = 'blur('+blurVal+'px)';
 
         var requestUsers = new XMLHttpRequest(), requestMessages = new XMLHttpRequest();
@@ -43,25 +45,50 @@ void function () {
             if (requestUsers.status >= 200 && requestUsers.status < 400) {
             // Обработчик успещного ответа
             var response = requestUsers.responseText;
-            var userList = Response;
             
             JSON.parse(response).forEach(
                 function (user, i) {
                     var ulDomElement = document.getElementById('users-list');
                     var liDomElement = document.createElement('li');
+                    var status = '';
+                    switch (user.status) {
+                        case 'active':
+                            status = 'online';
+                            break;
+                        case 'inactive':
+                            status = 'offline';
+                            break;
+                    }
                     liDomElement.innerHTML = ' ' +
-                    '<li class="clearfix">' +
+                    '<li class="clearfix" data-id="' + user.user_id + '">' +
                     // '<img src="images/0' + Number(i+1) + '.png" alt="avatar">' +
                         '<div class="about">' +
                         '<div class="name">' + user.username + '</div>' +
                         '<div class="status">' +
-                            '<i class="fa fa-circle online"></i> online 20 минут'
+                            '<i class="fa fa-circle ' + status + '"></i> online 20 минут'
                         '</div>' +
                         '</div>' +
                     '</li>';
                     ulDomElement.appendChild(liDomElement);
-                }
-            )
+                });
+                document.querySelectorAll('.list .clearfix').forEach(function (listElement) {
+                    var chatContainer = document.getElementById('chat-container');
+                    listElement.addEventListener('click', function () {
+                        var currentMessagesList = getMessagesByUserId(this.getAttribute('data-id'));
+                        chatContainer.innerHTML = '';
+                        currentMessagesList.forEach(userMessage => {
+                            chatContainer.innerHTML += 
+                            '<li>' +
+                                '<div class="message-data">' +
+                                    '<span class="message-data-name"><i class="fa fa-circle ' + this.firstChild.lastChild.firstChild.className.split(' ')[2] + '"></i>' + this.firstChild.firstChild.innerText + '</span>' +
+                                    '<span class="message-data-time">' + datePicker(new Date(userMessage.datetime)) + '</span>' +
+                                '</div>' +
+                                '<div class="message my-message">' + userMessage.message + '</div>' +
+                            '</li>';
+                        });
+                        document.getElementById('chat-container').scrollIntoView(false);
+                    });
+                });
             } else {
             // Обработчик ответа в случае ошибки
             }
@@ -83,7 +110,8 @@ void function () {
                     divChatWithElement.innerText = user.chatroom_id;
                     document.querySelector('body > div.container.clearfix > div.chat > div.chat-history > ul > li:nth-child(1) > div.message.my-message').innerText = user.message;
                 }
-            )
+            );
+            messages = JSON.parse(response);
             } else {
             // Обработчик ответа в случае ошибки
             }
@@ -123,11 +151,58 @@ void function () {
         });
 
         document.getElementById('message-to-send').addEventListener('keydown', function (e) {
-            document.querySelector('#people-list > div.messageinfo > p:nth-child(1) > output').innerText =  e.target.value.length;
+            var value = e.target.value;
+            if (value.length >= 500) alert('Нельзя вводить больше пятсот сообщений!!!');
+            document.querySelector('#people-list > div.messageinfo > p:nth-child(1) > output').innerText =  value.length;
+            document.querySelector('#people-list > div.messageinfo > p:nth-child(2) > output').innerText =  value.split(/^(?:[в-яёa-z\d]*[а-яёa-z]\d[в-яёa-z\d]*$|[в-яёa-z\d]*\d[в-яёa-z][в-яёa-z\d]*$)/i).length - 1;
+            document.querySelector('#people-list > div.messageinfo > p:nth-child(3) > output').innerText =  value.split(' ').length - 1;
+            document.querySelector('#people-list > div.messageinfo > p:nth-child(4) > output').innerText =  value.split(/[.,\/#!$%\^&\*;:{}=\-_`~()]/).length - 1;
         });
 
         document.querySelector('body > div.container.clearfix > div.chat > div.chat-history > ul > li:nth-child(1) > div.message.my-message').innerText = 'privet is cosmosa';
+
+        document.getElementById('send-message').addEventListener('click', function () {
+            var messageFragment = document.createElement('li');
+            messageFragment.className = 'clearfix';
+            messageFragment.innerHTML = 
+            '<div class="message-data align-right">' +
+                '<span class="message-data-time">' + datePicker(new Date) + '</span> &nbsp; &nbsp;' +
+                '<span class="message-data-name">Вы</span> <i class="fa fa-circle me"></i>' +
+            '</div>' +
+            '<div class="message other-message float-right">' + document.getElementById('message-to-send').value + 
+            '</div>';
+            document.getElementById('chat-container').appendChild(messageFragment);
+            document.getElementById('message-to-send').value = '';
+            
+            var requestMessagePost = new XMLHttpRequest();
+            requestMessagePost.open('POST', 'https://studentschat.herokuapp.com/messages', true);
+
+
+            requestMessagePost.onload = function() {
+            // Обработчик ответа в случае удачного соеденения
+                console.log('Message post success!');
+            };
+
+            requestMessagePost.onerror = function() {
+            // Обработчик ответа в случае неудачного соеденения
+                //document.querySelector('body > div.container.clearfix').style.visibility = "visible";
+                console.log('Что-то пошло не так');
+            };
+            requestMessagePost.setRequestHeader('Content-Type', 'application/json');
+
+            requestMessagePost.send(JSON.stringify(document.getElementById('message-to-send').value));
+        });
     });
+
+    function getMessagesByUserId(userId) {
+        return messages.filter(function (user) {
+            return user.user_id === userId;
+        });
+    }
+
+    function datePicker(date) {
+        return date.getHours() + ':' + date.getMinutes() + ', ' + date.toLocaleDateString();
+    }
 
     window.onload = addListeners();
     var offX;
