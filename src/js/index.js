@@ -30,10 +30,10 @@ console.log(o?.foo?.bar?.baz ?? 'default');
 void function () {
     var blurVal = 40, LOGIN = false, currentUserChatId = 0, messages = [], users = [];
 
-    document.addEventListener( "DOMContentLoaded", function(){
+    document.addEventListener( "DOMContentLoaded", function() {
 ////////////////////////////////////// to delete!!! //////////////////////////////////////
-/********/ document.querySelector('body > div.login-modal').style.display = "none"; /****/ 
-/********/ blurVal = 0; /****************************************************************/
+/********/ //document.querySelector('body > div.login-modal').style.display = "none"; /****/ 
+/********/ //blurVal = 0; /****************************************************************/
 ////////////////////////////////////// to delete!!! //////////////////////////////////////
         document.querySelector('body > div.container.clearfix').style.filter = 'blur('+blurVal+'px)';
 
@@ -46,41 +46,42 @@ void function () {
         requestUsers.onload = function() {
             if (requestUsers.status >= 200 && requestUsers.status < 400) {
             // Обработчик успещного ответа
-            var response = requestUsers.responseText;
-            users = JSON.parse(response);
+                var response = requestUsers.responseText;
+                users = JSON.parse(response);
 
-            document.querySelector('.onlinemembers > span').innerText = getNumberOfActiveUsers();
-            
-            JSON.parse(response).forEach(
-                function (user, i) {
-                    var ulDomElement = document.getElementById('users-list');
-                    var liDomElement = document.createElement('li');
-                    var status = '';
-                    switch (user.status) {
-                        case 'active':
-                            status = 'online';
-                            break;
-                        case 'inactive':
-                            status = 'offline';
-                            break;
-                    }
-                    liDomElement.innerHTML = ' ' +
-                    '<li class="clearfix" data-id="' + user.user_id + '">' +
-                    // '<img src="images/0' + Number(i+1) + '.png" alt="avatar">' +
-                        '<div class="about">' +
-                        '<div class="name">' + user.username + '</div>' +
-                        '<div class="status">' +
-                            '<i class="fa fa-circle ' + status + '"></i> online 20 минут'
-                        '</div>' +
-                        '</div>' +
-                    '</li>';
-                    ulDomElement.appendChild(liDomElement);
+                document.querySelector('.onlinemembers > span').innerText = getNumberOfActiveUsers();
+                
+                JSON.parse(response).forEach(
+                    function (user, i) {
+                        var ulDomElement = document.getElementById('users-list');
+                        var liDomElement = document.createElement('li');
+                        var status = '';
+                        switch (user.status) {
+                            case 'active':
+                                status = 'online';
+                                break;
+                            case 'inactive':
+                                status = 'offline';
+                                break;
+                        }
+                        liDomElement.innerHTML = ' ' +
+                        '<li class="clearfix" data-id="' + user.user_id + '">' +
+                        // '<img src="images/0' + Number(i+1) + '.png" alt="avatar">' +
+                            '<div class="about">' +
+                            '<div class="name">' + user.username + '</div>' +
+                            '<div class="status">' +
+                                '<i class="fa fa-circle ' + status + '"></i> online 20 минут'
+                            '</div>' +
+                            '</div>' +
+                        '</li>';
+                        ulDomElement.appendChild(liDomElement);
                 });
 
                 document.querySelectorAll('.list .clearfix').forEach(function (listElement) { // user-list click
                     var chatContainer = document.getElementById('chat-container');
                     listElement.addEventListener('click', function () {
-                        var currentMessagesList = getMessagesByUserId(this.getAttribute('data-id'));
+                        currentUserChatId = this.getAttribute('data-id');
+                        var currentMessagesList = getMessagesByUserId(currentUserChatId);
                         chatContainer.innerHTML = '';
                         currentMessagesList.forEach(userMessage => {
                             chatContainer.innerHTML += 
@@ -110,7 +111,6 @@ void function () {
             if (requestMessages.status >= 200 && requestMessages.status < 400) {
             // Обработчик успещного ответа
             var response = requestMessages.responseText;
-            var messagesList = Response;
             
             JSON.parse(response).forEach(
                 function (user, i) {
@@ -152,7 +152,11 @@ void function () {
             };
             requestLogin.setRequestHeader('Content-Type', 'application/json');
 
-            requestLogin.send(JSON.stringify(userName));
+            requestLogin.send(JSON.stringify({
+                status: "active",
+                user_id: 9999999,
+                username: userName
+            }));
         });
 
         document.getElementById('message-to-send').addEventListener('keydown', function (e) {
@@ -199,7 +203,11 @@ void function () {
             };
             requestMessagePost.setRequestHeader('Content-Type', 'application/json');
 
-            requestMessagePost.send(JSON.stringify(document.getElementById('message-to-send').value));
+            requestMessagePost.send(JSON.stringify({
+                datetime: new Date,
+                message: document.getElementById('message-to-send').value,
+                user_id: currentUserChatId
+            }));
         });
     });
 
