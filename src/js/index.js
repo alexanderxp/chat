@@ -28,11 +28,13 @@ const o = {
 console.log(o?.foo?.bar?.baz ?? 'default');
 */
 void function () {
-    var blurVal = 40;
-    var LOGIN = false;
+    var blurVal = 40, LOGIN = false, currentUserChatId = 0, messages = [];
 
     document.addEventListener( "DOMContentLoaded", function(){
-
+        ////////////////////////////////////// to delete!!! //////////////////////////////////////
+        /********/ document.querySelector('body > div.login-modal').style.display = "none"; /****/ 
+        /****** */ blurVal = 0; /****************************************************************/
+        ////////////////////////////////////// to delete!!! //////////////////////////////////////
         document.querySelector('body > div.container.clearfix').style.filter = 'blur('+blurVal+'px)';
 
         var requestUsers = new XMLHttpRequest(), requestMessages = new XMLHttpRequest();
@@ -49,19 +51,32 @@ void function () {
                 function (user, i) {
                     var ulDomElement = document.getElementById('users-list');
                     var liDomElement = document.createElement('li');
+                    var status = '';
+                    switch (user.status) {
+                        case 'active':
+                            status = 'online';
+                            break;
+                        case 'inactive':
+                            status = 'offline';
+                            break;
+                    }
                     liDomElement.innerHTML = ' ' +
                     '<li class="clearfix">' +
                     // '<img src="images/0' + Number(i+1) + '.png" alt="avatar">' +
                         '<div class="about">' +
                         '<div class="name">' + user.username + '</div>' +
                         '<div class="status">' +
-                            '<i class="fa fa-circle online"></i> online 20 минут'
+                            '<i class="fa fa-circle ' + status + '"></i> online 20 минут'
                         '</div>' +
                         '</div>' +
                     '</li>';
                     ulDomElement.appendChild(liDomElement);
-                }
-            )
+                });
+                document.querySelectorAll('.list .clearfix').forEach(function (listElement) {
+                    listElement.addEventListener('click', function () {
+                        console.log(this);
+                    });
+                });
             } else {
             // Обработчик ответа в случае ошибки
             }
@@ -83,7 +98,8 @@ void function () {
                     divChatWithElement.innerText = user.chatroom_id;
                     document.querySelector('body > div.container.clearfix > div.chat > div.chat-history > ul > li:nth-child(1) > div.message.my-message').innerText = user.message;
                 }
-            )
+            );
+            messages = JSON.parse(response);
             } else {
             // Обработчик ответа в случае ошибки
             }
