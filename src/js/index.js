@@ -28,14 +28,16 @@ const o = {
 console.log(o?.foo?.bar?.baz ?? 'default');
 */
 void function () {
-    var blurVal = 40, LOGIN = false, currentUserChatId = 0, messages = [];
+    var blurVal = 40, LOGIN = false, currentUserChatId = 0, messages = [], users = [];
 
     document.addEventListener( "DOMContentLoaded", function(){
-        ////////////////////////////////////// to delete!!! //////////////////////////////////////
-        /********/ document.querySelector('body > div.login-modal').style.display = "none"; /****/ 
-        /********/ blurVal = 0; /****************************************************************/
-        ////////////////////////////////////// to delete!!! //////////////////////////////////////
+////////////////////////////////////// to delete!!! //////////////////////////////////////
+/********/ document.querySelector('body > div.login-modal').style.display = "none"; /****/ 
+/********/ blurVal = 0; /****************************************************************/
+////////////////////////////////////// to delete!!! //////////////////////////////////////
         document.querySelector('body > div.container.clearfix').style.filter = 'blur('+blurVal+'px)';
+
+        document.querySelector('.timeonline > p > span').innerText = ((new Date).getHours() + ':' + (new Date).getMinutes());
 
         var requestUsers = new XMLHttpRequest(), requestMessages = new XMLHttpRequest();
         requestUsers.open('GET', 'https://studentschat.herokuapp.com/users', true);
@@ -45,6 +47,9 @@ void function () {
             if (requestUsers.status >= 200 && requestUsers.status < 400) {
             // Обработчик успещного ответа
             var response = requestUsers.responseText;
+            users = JSON.parse(response);
+
+            document.querySelector('.onlinemembers > span').innerText = getNumberOfActiveUsers();
             
             JSON.parse(response).forEach(
                 function (user, i) {
@@ -71,7 +76,8 @@ void function () {
                     '</li>';
                     ulDomElement.appendChild(liDomElement);
                 });
-                document.querySelectorAll('.list .clearfix').forEach(function (listElement) {
+
+                document.querySelectorAll('.list .clearfix').forEach(function (listElement) { // user-list click
                     var chatContainer = document.getElementById('chat-container');
                     listElement.addEventListener('click', function () {
                         var currentMessagesList = getMessagesByUserId(this.getAttribute('data-id'));
@@ -87,6 +93,8 @@ void function () {
                             '</li>';
                         });
                         document.getElementById('chat-container').scrollIntoView(false);
+                        document.querySelector('.chat-num-messages > span').innerText = currentMessagesList.length;
+                        document.querySelector('div.chat-with').innerText = this.firstChild.firstChild.innerText;
                     });
                 });
             } else {
@@ -127,12 +135,9 @@ void function () {
 
             var userName = document.querySelector('body > div.login-modal > div:nth-child(2) > input').value;
 
-            requestLogin.onload = function() {
-            // Обработчик ответа в случае удачного соеденения
-            };
+            requestLogin.onerror = function() {};
 
-            requestLogin.onerror = function() {
-            // Обработчик ответа в случае неудачного соеденения
+            requestLogin.onload = function() {
                 //document.querySelector('body > div.container.clearfix').style.visibility = "visible";
                 var i = blurVal;
                 document.querySelector('body > div.login-modal').style.display = "none";
@@ -154,7 +159,7 @@ void function () {
             var value = e.target.value;
             if (value.length >= 500) alert('Нельзя вводить больше пятсот сообщений!!!');
             document.querySelector('#people-list > div.messageinfo > p:nth-child(1) > output').innerText =  value.length;
-            document.querySelector('#people-list > div.messageinfo > p:nth-child(2) > output').innerText =  value.split(/^(?:[в-яёa-z\d]*[а-яёa-z]\d[в-яёa-z\d]*$|[в-яёa-z\d]*\d[в-яёa-z][в-яёa-z\d]*$)/i).length - 1;
+            document.querySelector('#people-list > div.messageinfo > p:nth-child(2) > output').innerText =  value.split(/[A-ZА-ЯЁa-zаЯЁ]/).length - 1;
             document.querySelector('#people-list > div.messageinfo > p:nth-child(3) > output').innerText =  value.split(' ').length - 1;
             document.querySelector('#people-list > div.messageinfo > p:nth-child(4) > output').innerText =  value.split(/[.,\/#!$%\^&\*;:{}=\-_`~()]/).length - 1;
         });
@@ -162,6 +167,10 @@ void function () {
         document.querySelector('body > div.container.clearfix > div.chat > div.chat-history > ul > li:nth-child(1) > div.message.my-message').innerText = 'privet is cosmosa';
 
         document.getElementById('send-message').addEventListener('click', function () {
+            if (!document.getElementById('message-to-send').value.trim()) {
+                alert('Вы ввели пустое сообщение.');
+                return;
+            }
             var messageFragment = document.createElement('li');
             messageFragment.className = 'clearfix';
             messageFragment.innerHTML = 
@@ -198,6 +207,12 @@ void function () {
         return messages.filter(function (user) {
             return user.user_id === userId;
         });
+    }
+
+    function getNumberOfActiveUsers() {
+        return users.filter(function (user) {
+            return user.status === 'active';
+        }).length;
     }
 
     function datePicker(date) {
