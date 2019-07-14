@@ -153,8 +153,6 @@ void function () {
             requestLogin.setRequestHeader('Content-Type', 'application/json');
 
             requestLogin.send(JSON.stringify({
-                status: "active",
-                user_id: 9999999,
                 username: userName
             }));
         });
@@ -185,29 +183,30 @@ void function () {
             '<div class="message other-message float-right">' + document.getElementById('message-to-send').value + 
             '</div>';
             document.getElementById('chat-container').appendChild(messageFragment);
-            document.getElementById('message-to-send').value = '';
             
             var requestMessagePost = new XMLHttpRequest();
             requestMessagePost.open('POST', 'https://studentschat.herokuapp.com/messages', true);
-
-
+            
+            
             requestMessagePost.onload = function() {
-            // Обработчик ответа в случае удачного соеденения
+                // Обработчик ответа в случае удачного соеденения
                 console.log('Message post success!');
             };
-
+            
             requestMessagePost.onerror = function() {
-            // Обработчик ответа в случае неудачного соеденения
+                // Обработчик ответа в случае неудачного соеденения
                 //document.querySelector('body > div.container.clearfix').style.visibility = "visible";
                 console.log('Что-то пошло не так');
             };
             requestMessagePost.setRequestHeader('Content-Type', 'application/json');
-
+            
             requestMessagePost.send(JSON.stringify({
-                datetime: new Date,
+                datetime:(new Date()).toJSON(),
                 message: document.getElementById('message-to-send').value,
                 user_id: currentUserChatId
             }));
+            
+            document.getElementById('message-to-send').value = '';
         });
     });
 
