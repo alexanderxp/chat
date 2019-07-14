@@ -61,7 +61,7 @@ void function () {
                             break;
                     }
                     liDomElement.innerHTML = ' ' +
-                    '<li class="clearfix">' +
+                    '<li class="clearfix" data-id="' + user.user_id + '">' +
                     // '<img src="images/0' + Number(i+1) + '.png" alt="avatar">' +
                         '<div class="about">' +
                         '<div class="name">' + user.username + '</div>' +
@@ -73,8 +73,21 @@ void function () {
                     ulDomElement.appendChild(liDomElement);
                 });
                 document.querySelectorAll('.list .clearfix').forEach(function (listElement) {
+                    var chatContainer = document.getElementById('chat-container');
                     listElement.addEventListener('click', function () {
-                        console.log(this);
+                        var currentMessagesList = getMessagesByUserId(this.getAttribute('data-id'));
+                        chatContainer.innerHTML = '';
+                        currentMessagesList.forEach(userMessage => {
+                            chatContainer.innerHTML += 
+                            '<li>' +
+                                '<div class="message-data">' +
+                                    '<span class="message-data-name"><i class="fa fa-circle online"></i>' + this.firstChild.firstChild.innerText + '</span>' +
+                                    '<span class="message-data-time">' + datePicker(new Date(userMessage.datetime)) + '</span>' +
+                                '</div>' +
+                                '<div class="message my-message">' + userMessage.message + '</div>' +
+                            '</li>';
+                        });
+                        document.getElementById('chat-container').scrollIntoView(false);
                     });
                 });
             } else {
@@ -144,6 +157,16 @@ void function () {
 
         document.querySelector('body > div.container.clearfix > div.chat > div.chat-history > ul > li:nth-child(1) > div.message.my-message').innerText = 'privet is cosmosa';
     });
+
+    function getMessagesByUserId(userId) {
+        return messages.filter(function (user) {
+            return user.user_id === userId;
+        });
+    }
+
+    function datePicker(date) {
+        return date.getHours() + ':' + date.getMinutes() + ', ' + date.toLocaleDateString();
+    }
 
     window.onload = addListeners();
     var offX;
