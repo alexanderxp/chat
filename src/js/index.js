@@ -28,7 +28,7 @@ const o = {
 console.log(o?.foo?.bar?.baz ?? 'default');
 */
 void function () {
-    var blurVal = 40, LOGIN = false, currentUserChatId = 0, messages = [], users = [];
+    var blurVal = 15, LOGIN = false, currentUserChatId = 0, messages = [], users = [];
 
     document.addEventListener( "DOMContentLoaded", function() {
 ////////////////////////////////////// to delete!!! //////////////////////////////////////
@@ -161,8 +161,8 @@ void function () {
             var value = e.target.value;
             if (value.length >= 500) alert('Нельзя вводить больше пятсот сообщений!!!');
             document.querySelector('#people-list > div.messageinfo > p:nth-child(1) > output').innerText =  value.length;
-            document.querySelector('#people-list > div.messageinfo > p:nth-child(2) > output').innerText =  value.split(/[A-ZА-ЯЁa-zаЯЁ]/).length - 1;
-            document.querySelector('#people-list > div.messageinfo > p:nth-child(3) > output').innerText =  value.split(' ').length - 1;
+            document.querySelector('#people-list > div.messageinfo > p:nth-child(2) > output').innerText =  value.split(/[A-ZА-ЯЁa-zаЯЁ]/).length;
+            document.querySelector('#people-list > div.messageinfo > p:nth-child(3) > output').innerText =  value.split(' ').length;
             document.querySelector('#people-list > div.messageinfo > p:nth-child(4) > output').innerText =  value.split(/[.,\/#!$%\^&\*;:{}=\-_`~()]/).length - 1;
         });
 
