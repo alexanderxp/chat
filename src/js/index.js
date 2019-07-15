@@ -36,10 +36,12 @@ void function () {
 /********/ //blurVal = 0; /****************************************************************/
 ////////////////////////////////////// to delete!!! //////////////////////////////////////
         document.querySelector('body > div.container.clearfix').style.filter = 'blur('+blurVal+'px)';
-
+        
+        // отображение времени ( часы и минуты ) в левом верхнем углу .
         document.querySelector('.timeonline > p > span').innerText = ((new Date).getHours() + ':' + (new Date).getMinutes());
 
-        var requestUsers = new XMLHttpRequest(), requestMessages = new XMLHttpRequest();
+        var requestUsers = new XMLHttpRequest();
+        var requestMessages = new XMLHttpRequest();
         requestUsers.open('GET', 'https://studentschat.herokuapp.com/users', true);
         requestMessages.open('GET', 'https://studentschat.herokuapp.com/messages', true);
 
@@ -159,7 +161,9 @@ void function () {
 
         document.getElementById('message-to-send').addEventListener('keydown', function (e) {
             var value = e.target.value;
-            if (value.length >= 500) alert('Нельзя вводить больше пятсот сообщений!!!');
+            //  Ограничение сообщения до 500 символов.
+            if (value.length >= 500) alert('Нельзя вводить больше 500 сообщений!!!');
+            // подсчет символов, букв, пробелов.
             document.querySelector('#people-list > div.messageinfo > p:nth-child(1) > output').innerText =  value.length;
             document.querySelector('#people-list > div.messageinfo > p:nth-child(2) > output').innerText =  value.split(/[A-ZА-ЯЁa-zаЯЁ]/).length;
             document.querySelector('#people-list > div.messageinfo > p:nth-child(3) > output').innerText =  value.split(' ').length;
