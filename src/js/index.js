@@ -28,13 +28,20 @@ const o = {
 console.log(o?.foo?.bar?.baz ?? 'default');
 */
 void function () {
-    var blurVal = 15, LOGIN = false, currentUserChatId = 0, messages = [], users = [];
+    var blurVal = 15, LOGIN = false, currentUserChatId = 0, messages = [], users = [], loggedUser = '';
+
+    function toMMSS (seconds) {                     // функция счета секунд online
+        var date = new Date(null);
+        date.setSeconds(seconds);
+        return date.toISOString().substr(14, 5);
+    }
 
     document.addEventListener( "DOMContentLoaded", function() {
 ////////////////////////////////////// to delete!!! //////////////////////////////////////
 /********/ //document.querySelector('body > div.login-modal').style.display = "none"; /****/ 
 /********/ //blurVal = 0; /****************************************************************/
 ////////////////////////////////////// to delete!!! //////////////////////////////////////
+        var timerElement = document.querySelector('.timeonline > .youstatus > .fa + span');              // селектор для функции подсчета секунд online
         document.querySelector('body > div.container.clearfix').style.filter = 'blur('+blurVal+'px)';
         
         // отображение времени ( часы и минуты ) в левом верхнем углу .
@@ -122,6 +129,7 @@ void function () {
                 }
             );
             messages = JSON.parse(response);
+            document.querySelector('.countMe').innerText = messages.length;   // селектор подсчета сообщений всех пользователей чата 
             } else {
             // Обработчик ответа в случае ошибки
             }
@@ -135,7 +143,7 @@ void function () {
             var requestLogin = new XMLHttpRequest();
             requestLogin.open('POST', 'https://studentschat.herokuapp.com/users/register', true);
 
-            var userName = document.querySelector('body > div.login-modal > div:nth-child(2) > input').value;
+            loggedUser = document.querySelector('body > div.login-modal > div:nth-child(2) > input').value;   // селектор отсчета времени после залогивания
 
             requestLogin.onerror = function() {};
 
@@ -151,11 +159,14 @@ void function () {
                 }, 50);
                 document.querySelector('.to-display').innerText = 'Logout';
                 LOGIN = true;
+                setInterval(function () {                                          // функция для подсчета секунд online
+                    timerElement.innerText = +timerElement.innerText + 1;
+                }, 1000);
             };
             requestLogin.setRequestHeader('Content-Type', 'application/json');
 
             requestLogin.send(JSON.stringify({
-                username: userName
+                username: loggedUser
             }));
         });
 
