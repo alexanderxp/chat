@@ -79,7 +79,7 @@ void function () {
                             '<div class="about">' +
                             '<div class="name">' + user.username + '</div>' +
                             '<div class="status">' +
-                                '<i class="fa fa-circle ' + status + '"></i> online 20 минут'
+                                '<i class="fa fa-circle ' + status + '"></i> online'
                             '</div>' +
                             '</div>' +
                         '</li>';
@@ -176,8 +176,8 @@ void function () {
             if (value.length >= 500) alert('Нельзя вводить больше 500 сообщений!!!');
             // подсчет символов, букв, пробелов.
             document.querySelector('#people-list > div.messageinfo > p:nth-child(1) > output').innerText =  value.length;
-            document.querySelector('#people-list > div.messageinfo > p:nth-child(2) > output').innerText =  value.split(/[A-ZА-ЯЁa-zаЯЁ]/).length;
-            document.querySelector('#people-list > div.messageinfo > p:nth-child(3) > output').innerText =  value.split(' ').length;
+            document.querySelector('#people-list > div.messageinfo > p:nth-child(2) > output').innerText =  value.split(/[A-ZА-ЯЁa-zаЯЁ]/).length - 1;
+            document.querySelector('#people-list > div.messageinfo > p:nth-child(3) > output').innerText =  value.split(' ').length - 1;
             document.querySelector('#people-list > div.messageinfo > p:nth-child(4) > output').innerText =  value.split(/[.,\/#!$%\^&\*;:{}=\-_`~()]/).length - 1;
         });
 
