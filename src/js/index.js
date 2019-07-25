@@ -60,7 +60,7 @@ void function () {
 
                 document.querySelector('.onlinemembers > span').innerText = getNumberOfActiveUsers();
                 
-                JSON.parse(response).forEach(
+                JSON.parse(response).forEach(                                              // изменение цвета online offline )
                     function (user, i) {
                         var ulDomElement = document.getElementById('users-list');
                         var liDomElement = document.createElement('li');
@@ -118,7 +118,7 @@ void function () {
 
         requestMessages.onload = function() {
             if (requestMessages.status >= 200 && requestMessages.status < 400) {
-            // Обработчик успещного ответа
+            // Обработчик успешного ответа
             var response = requestMessages.responseText;
             
             JSON.parse(response).forEach(
@@ -282,4 +282,6 @@ void function () {
             document.querySelector('div.login-modal').style.display = 'inline-block';
         }
     }); 
+
+
 }();
