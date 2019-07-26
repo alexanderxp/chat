@@ -79,7 +79,7 @@ void function () {
                             '<div class="about">' +
                             '<div class="name">' + user.username + '</div>' +
                             '<div class="status">' +
-                                '<i class="fa fa-circle ' + status + '"></i> online'
+                                '<i class="fa fa-circle ' + status + '"></i>'+ status +''
                             '</div>' +
                             '</div>' +
                         '</li>';
